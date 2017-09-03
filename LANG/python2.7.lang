@@ -1,0 +1,23 @@
+!!!file_ext={py}!!!
+!!!lstlisting={Python}!!!
+!!!run_command={python2.7}!!!
+!!!func.output={
+def output(content):
+  file=open("outputfc_!!i!!.txt","w")
+  file.write(content)
+  file.close()
+}!!!
+!!!func.preamble={
+from __future__ import division
+}!!!
+!!!func.imagedisp={
+def imagedisp(input):
+  return("\includegraphics[width=3in]{"+input+"}")
+}!!!
+!!!func.scrinc={
+def scrinc(*options):
+   if len(options)==0:
+      return("""!!norm!!""")
+   elif "HF" in options:
+      return("""!!HF!!""")
+}!!!

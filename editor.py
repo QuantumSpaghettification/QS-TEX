@@ -8,24 +8,33 @@ import os.path
 f = open(sys.argv[1],"r")
 contents = f.read()
 f.close()
+#Get Languages
+path_to_LANG="./LANG"
+LangFiles = [x for x in os.listdir(path_to_LANG)]
+Lang_Info={}
+for x in LangFiles:
+  key=x.replace('.lang','')
+  f=open(path_to_LANG+"/"+x,"r")
+  lang_contents=f.read()
+  f.close()
+  Lang_Info[key]={}
+  par=re.findall(r'!!!(.*?)={(.*?)}!!!',lang_contents,re.DOTALL)
+  for y in par:
+    Lang_Info[key][y[0]]=y[1]
 
 def codefind(contentin):
   par=re.findall(r'<script=(.*?):action={(.*?)}>(.*?)</script>',contentin,re.DOTALL)
   newcontents=contentin
   #script needs to be the end point of the file.
-  langarray=['py','R','php']
+  langarray=[key for key in Lang_Info]
   #/////////////////////////////////////////////
   #////// Segments for code ///////////
-  def preable(lang): #To go at the beginning of each file.
-    preable1={}
-    preable1['py']='from __future__ import division \n'
-    return preable1[lang]
-  def outputfunc(lang,i): #The function which outputs the LaTeX code into a file.
-    outputfuns={}
-    outputfuns['py']='def output(content): \n \t file=open("outputfc_'+str(i)+'.txt","w")\n\t file.write(content)\n\t file.close()\n'
-    return outputfuns[lang]
+  def var_rep(string,var):
+    temp=string
+    for key in var:
+      temp=temp.replace("!!"+key+"!!",str(var[key]))
+    return(temp)
   def include_script(lang,script,action,indscriptid): #Function used to include scripts into page.
-    languges={'py':'Python'}
     def latexcode_func(pre_post):
       pre=''
       post=''
@@ -41,7 +50,7 @@ def codefind(contentin):
       backgroundcolor=\color{white},   
       commentstyle=\color{codegreen},
       keywordstyle=\color{magenta},
-      linewidth=3in,
+      linewidth=5in,
       numberstyle=\\\\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\\\\footnotesize,
@@ -57,22 +66,11 @@ def codefind(contentin):
       tabsize=2
       }
       %.................................................
-\\\\begin{lstlisting}[language="""+languges[lang]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script+post+"""\end{lstlisting}
+\\\\begin{lstlisting}[language="""+Lang_Info[lang]["lstlisting"]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script+post+"""\end{lstlisting}
           """#The } and { before and after begin{...} and end{...} are to close the newsubject enviroment in which lstlisting does not work.
       return(latexcode)
-    script={"py":"""
-def scrinc(*options):
-   if len(options)==0:
-      return(\"\"\""""+latexcode_func('')+"""\"\"\")
-   elif "HF" in options:
-      return(\"\"\""""+latexcode_func('HF')+"""\"\"\")
-   """}
-    return(script[lang])
+    return(var_rep(Lang_Info[lang]['func.scrinc'],{"Norm":latexcode_func(''),"HF":latexcode_func('HF')}))
     
-  def imagedisp_fun(lang): #Defines function to output images.
-    imagedisp1={}
-    imagedisp1['py']='def imagedisp(input):\n\t return(" \\\\includegraphics[width=3in]{"+input+"} ")\n'
-    return imagedisp1[lang]
   #/////////////////////////////////////////////// Creating and Running Scripts
   part_script={}
   partsc_id=0
@@ -92,16 +90,16 @@ def scrinc(*options):
   scripts={}
   alonecount=0
   for partsc_id, ps in part_script.iteritems():
-    prearray=[lang,preable(lang),imagedisp_fun(lang)]
+    prearray=[lang,Lang_Info[lang]["func.preamble"],Lang_Info[lang]["func.imagedisp"]]
     if ps[0] == "alone":
-      scripts['alone'+str(alonecount)]=prearray+[outputfunc(lang,partsc_id),include_script(lang,ps[3],ps[2],partsc_id)]+[ps[3]]
+      scripts['alone'+str(alonecount)]=prearray+[var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}),include_script(lang,ps[3],ps[2],partsc_id)]+[ps[3]]
       alonecount=alonecount+1
     else:
       try:
-        scripts[ps[0]].extend([outputfunc(lang,partsc_id),include_script(lang,ps[3],ps[2],partsc_id),ps[3]])
+        scripts[ps[0]].extend([var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}) ,include_script(lang,ps[3],ps[2],partsc_id),ps[3]])
       except KeyError:
         scripts[ps[0]]=prearray
-        scripts[ps[0]].extend([outputfunc(lang,partsc_id),include_script(lang,ps[3],ps[2],partsc_id),ps[3]])
+        scripts[ps[0]].extend([var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}) ,include_script(lang,ps[3],ps[2],partsc_id),ps[3]])
   #/////// Runs scripts
   for scr_run in scripts.itervalues():
     scr_final=''
@@ -109,12 +107,10 @@ def scrinc(*options):
     while i<len(scr_run):
       scr_final=scr_final+'\n'+scr_run[i]
       i=i+1
-    file=open("tempcode."+scr_run[0],"w")
+    file=open("tempcode."+Lang_Info[scr_run[0]]['file_ext'],"w")
     file.write(scr_final)
     file.close()
-    for lt,y in zip(langarray,['python2.7 tempcode.py','Rscript tempcode.R']):
-      if scr_run[0]==lt:
-        os.system(y)
+    os.system(Lang_Info[scr_run[0]]['run_command']+' '+'tempcode.'+Lang_Info[scr_run[0]]['file_ext'])
   #/////// forms find and replace to replace <script...>...</script>with output.
   for partsc_id,ps in part_script.iteritems():
     file=open('outputfc_'+str(partsc_id)+'.txt',"r")
