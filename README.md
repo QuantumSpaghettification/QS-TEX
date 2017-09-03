@@ -1,5 +1,7 @@
 # QS-TEX
 Combining LaTeX and Script - aimed at scientists.
+# Instruction Videos
+Getting Started: https://www.youtube.com/watch?v=WU3ZbShQthY&feature=youtu.be
 # How to Use
 See the Basic_Guide.pdf file for information of what to inculde in your latex file.
 
