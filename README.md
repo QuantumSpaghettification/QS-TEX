@@ -4,7 +4,7 @@ Combining LaTeX and Script - aimed at scientists.
 See the Basic_Guide.pdf file for information of what to inculde in your latex file.
 
 Steps:
- 1. Download the editor.py file.
+ 1. Download the editor.py file along with the LANG directory.
  2. Run (for linux) `python2.7 editor.py <name of LaTeX file>.tex` which will create a file called temp.tex
  3. Run your usual LaTeX compilling programs on temp.tex
  
