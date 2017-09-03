@@ -1,6 +1,8 @@
 # QS-TEX
 Combining LaTeX and Script - aimed at scientists.
 # How to Use
+See the Basic_Guide.pdf file for information of what to inculde in your latex file.
+
 Steps:
  1. Download the editor.py file.
  2. Run (for linux) `python2.7 editor.py <name of LaTeX file>.tex` which will create a file called temp.tex
