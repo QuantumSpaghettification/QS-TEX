@@ -1,5 +1,5 @@
 !!!file_ext={py}!!!
-!!!lstlisting={Python}!!!
+!!!lstlisting={python}!!!
 !!!back_slash_escape={"}!!!
 
 !!!run_command={python2.7}!!!
@@ -22,6 +22,8 @@ def scrinc(*options):
       x="""!!norm!!"""
    elif "HF" in options:
       x="""!!HF!!"""
-   x=x.replace(['!bs!b','!bs!n'],['\\\\b','\\\\n'])
-   x=x.replace('!bs!','\\')
+   findrep={'!bs!b':'\\b','!bs!n':'\\\\n','!bs!':'\\'}
+   for key in findrep:
+      x=x.replace(key,findrep[key])
+   return(x)
 }!!!
