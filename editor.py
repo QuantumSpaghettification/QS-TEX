@@ -16,15 +16,15 @@ def codefind(contentin):
   langarray=['py','R','php']
   #/////////////////////////////////////////////
   #////// Segments for code ///////////
-  def preable(lang):
+  def preable(lang): #To go at the beginning of each file.
     preable1={}
     preable1['py']='from __future__ import division \n'
     return preable1[lang]
-  def outputfunc(lang,i):
+  def outputfunc(lang,i): #The function which outputs the LaTeX code into a file.
     outputfuns={}
     outputfuns['py']='def output(content): \n \t file=open("outputfc_'+str(i)+'.txt","w")\n\t file.write(content)\n\t file.close()\n'
     return outputfuns[lang]
-  def include_script(lang,script,action,indscriptid):
+  def include_script(lang,script,action,indscriptid): #Function used to include scripts into page.
     languges={'py':'Python'}
     def latexcode_func(pre_post):
       pre=''
@@ -69,11 +69,11 @@ def scrinc(*options):
    """}
     return(script[lang])
     
-  def imagedisp_fun(lang):
+  def imagedisp_fun(lang): #Defines function to output images.
     imagedisp1={}
     imagedisp1['py']='def imagedisp(input):\n\t return(" \\\\includegraphics[width=3in]{"+input+"} ")\n'
     return imagedisp1[lang]
-  #///////////////////////////////////////////////
+  #/////////////////////////////////////////////// Creating and Running Scripts
   part_script={}
   partsc_id=0
   for x in par:
@@ -86,7 +86,7 @@ def scrinc(*options):
       sid="alone"
     else:
       sid=sid[0]
-    part_script[partsc_id]=[sid,lang,action,script]
+    part_script[partsc_id]=[sid,lang,action,script] #This array contains information about the indivudual scripts
     partsc_id=partsc_id+1
   #Forming the total scripts
   scripts={}
@@ -115,7 +115,7 @@ def scrinc(*options):
     for lt,y in zip(langarray,['python2.7 tempcode.py','Rscript tempcode.R']):
       if scr_run[0]==lt:
         os.system(y)
-  #/////// forms find and replace
+  #/////// forms find and replace to replace <script...>...</script>with output.
   for partsc_id,ps in part_script.iteritems():
     file=open('outputfc_'+str(partsc_id)+'.txt',"r")
     replace=file.read()
