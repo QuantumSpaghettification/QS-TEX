@@ -57,8 +57,8 @@ def codefind(contentin):
       tabsize=2
       }
       %.................................................
-}\\\\begin{lstlisting}[language="""+languges[lang]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script+post+"""\end{lstlisting}{
-      %.................................................      """#The } and { before and after begin{...} and end{...} are to close the newsubject enviroment in which lstlisting does not work.
+\\\\begin{lstlisting}[language="""+languges[lang]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script+post+"""\end{lstlisting}
+          """#The } and { before and after begin{...} and end{...} are to close the newsubject enviroment in which lstlisting does not work.
       return(latexcode)
     script={"py":"""
 def scrinc(*options):
