@@ -38,22 +38,25 @@ def codefind(contentin):
     def latexcode_func(pre_post):
       pre=''
       post=''
+      script_escaped=script
+      for x in Lang_Info[lang]["back_slash_escape"]:
+        script_escaped=script_escaped.replace(x,"\\"+x)
       if pre_post=='HF':
         pre=pre+"\n<script="+lang+":action={"+action+"}>"
         post=post+"</script>"
       latexcode="""
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-      \lstdefinestyle{mystyle"""+str(indscriptid)+"""}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
+      !bs!definecolor{codegreen}{rgb}{0,0.6,0}
+      !bs!definecolor{codegray}{rgb}{0.5,0.5,0.5}
+      !bs!definecolor{codepurple}{rgb}{0.58,0,0.82}
+      !bs!definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+      !bs!lstdefinestyle{mystyle"""+str(indscriptid)+"""}{
+      backgroundcolor=!bs!color{white},   
+      commentstyle=!bs!color{codegreen},
+      keywordstyle=!bs!color{magenta},
       linewidth=5in,
-      numberstyle=\\\\tiny\color{codegray},
-      stringstyle=\color{codepurple},
-      basicstyle=\\\\footnotesize,
+      numberstyle=!bs!tiny!bs!color{codegray},
+      stringstyle=!bs!color{codepurple},
+      basicstyle=!bs!footnotesize,
       breakatwhitespace=false,         
       breaklines=true,                 
       captionpos=b,                    
@@ -66,10 +69,10 @@ def codefind(contentin):
       tabsize=2
       }
       %.................................................
-\\\\begin{lstlisting}[language="""+Lang_Info[lang]["lstlisting"]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script+post+"""\end{lstlisting}
+!bs!begin{lstlisting}[language="""+Lang_Info[lang]["lstlisting"]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script_escaped+post+"""!bs!end{lstlisting}
           """#The } and { before and after begin{...} and end{...} are to close the newsubject enviroment in which lstlisting does not work.
       return(latexcode)
-    return(var_rep(Lang_Info[lang]['func.scrinc'],{"Norm":latexcode_func(''),"HF":latexcode_func('HF')}))
+    return(var_rep(Lang_Info[lang]['func.scrinc'],{"norm":latexcode_func(''),"HF":latexcode_func('HF')}))
     
   #/////////////////////////////////////////////// Creating and Running Scripts
   part_script={}
@@ -90,6 +93,7 @@ def codefind(contentin):
   scripts={}
   alonecount=0
   for partsc_id, ps in part_script.iteritems():
+    lang=ps[1]
     prearray=[lang,Lang_Info[lang]["func.preamble"],Lang_Info[lang]["func.imagedisp"]]
     if ps[0] == "alone":
       scripts['alone'+str(alonecount)]=prearray+[var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}),include_script(lang,ps[3],ps[2],partsc_id)]+[ps[3]]

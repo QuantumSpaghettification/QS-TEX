@@ -1,0 +1,27 @@
+!!!file_ext={R}!!!
+!!!lstlisting={R}!!!
+!!!back_slash_escape={"}!!!
+!!!run_command={Rscript}!!!
+!!!func.output={
+output <- function(content){
+   cat(content, file = "outputfc_!!i!!.txt")
+   }
+}!!!
+!!!func.preamble={
+}!!!
+!!!func.imagedisp={
+imagedisp <-function(input){
+  text=c("\\includegraphics[width=3in]{",input,"}")
+  return(paste(text,collapse=""))}
+}!!!
+!!!func.scrinc={
+scrinc <-function(options){
+  if(options==""){
+    x="!!norm!!"
+    }
+  else if(options=="HF"){
+    x="!!HF!!"
+    }
+   return(gsub('!bs!','\\\\',x))
+  }
+}!!!

@@ -1,5 +1,7 @@
 !!!file_ext={py}!!!
 !!!lstlisting={Python}!!!
+!!!back_slash_escape={"}!!!
+
 !!!run_command={python2.7}!!!
 !!!func.output={
 def output(content):
@@ -17,7 +19,9 @@ def imagedisp(input):
 !!!func.scrinc={
 def scrinc(*options):
    if len(options)==0:
-      return("""!!norm!!""")
+      x="""!!norm!!"""
    elif "HF" in options:
-      return("""!!HF!!""")
+      x="""!!HF!!"""
+   x=x.replace(['!bs!b','!bs!n'],['\\\\b','\\\\n'])
+   x=x.replace('!bs!','\\')
 }!!!
