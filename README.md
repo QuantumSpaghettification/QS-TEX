@@ -7,7 +7,8 @@ Getting Started: https://www.youtube.com/watch?v=WU3ZbShQthY&feature=youtu.be
 # Essential Downloads
 For this program to work you must download (at minimum):
  1. editor.py
- 2. ./LANG/<your_language_of_choice>.lang
+ 2. `./LANG/<your_language_of_choice>.lang`
+ 3. `./FUNC/.../` but no need to download all content of subdirs.
 # How to Use
 See the Basic_Guide.pdf file for information of what to inculde in your latex file.
 
