@@ -1,0 +1,2 @@
+def imagedisp(input):
+  return("\includegraphics[width=3in]{"+input+"}")

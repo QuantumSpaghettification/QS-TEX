@@ -8,7 +8,9 @@ import os.path
 f = open(sys.argv[1],"r")
 contents = f.read()
 f.close()
-#Get Languages
+  #//////////////////////////////////////////////////////////////////////////////
+  #............................Gets info from LANG directory...........
+  #//////////////////////////////////////////////////////////////////////////////
 path_to_LANG="./LANG"
 LangFiles = [x for x in os.listdir(path_to_LANG)]
 Lang_Info={}
@@ -70,11 +72,13 @@ def codefind(contentin):
       }
       %.................................................
 !bs!begin{lstlisting}[language="""+Lang_Info[lang]["lstlisting"]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script_escaped+post+"""!bs!end{lstlisting}
-          """#The } and { before and after begin{...} and end{...} are to close the newsubject enviroment in which lstlisting does not work.
+          """
       return(latexcode)
     return(var_rep(Lang_Info[lang]['func.scrinc'],{"norm":latexcode_func(''),"HF":latexcode_func('HF')}))
-    
-  #/////////////////////////////////////////////// Creating and Running Scripts
+  #//////////////////////////////////////////////////////////////////////////////
+  #............................Creating Partial Directory of particle scripts....
+  #//////////////////////////////////////////////////////////////////////////////
+  
   part_script={}
   partsc_id=0
   for x in par:
@@ -89,12 +93,29 @@ def codefind(contentin):
       sid=sid[0]
     part_script[partsc_id]=[sid,lang,action,script] #This array contains information about the indivudual scripts
     partsc_id=partsc_id+1
-  #Forming the total scripts
+  #//////////////////////////////////////////////////////////////////////////////
+  #............................Getting Functions from FUNC.........
+  #//////////////////////////////////////////////////////////////////////////////
+  def pre_functions(lang):
+    path_to_FUNC="./FUNC/"+lang
+    Func_Files = [x for x in os.listdir(path_to_FUNC)]
+    Func_String=''
+    for x in Func_Files:
+      f=open(path_to_FUNC+"/"+x,"r")
+      Func_Contents=f.read()
+      f.close()
+      Func_String= Func_String+Func_Contents+'\n'
+    return(Func_String)
+  
+  #//////////////////////////////////////////////////////////////////////////////
+  #............................Forming the total scripts...........
+  #//////////////////////////////////////////////////////////////////////////////
+  
   scripts={}
   alonecount=0
   for partsc_id, ps in part_script.iteritems():
     lang=ps[1]
-    prearray=[lang,Lang_Info[lang]["func.preamble"],Lang_Info[lang]["func.imagedisp"]]
+    prearray=[lang,Lang_Info[lang]["func.preamble"],pre_functions(lang)]
     if ps[0] == "alone":
       scripts['alone'+str(alonecount)]=prearray+[var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}),include_script(lang,ps[3],ps[2],partsc_id)]+[ps[3]]
       alonecount=alonecount+1
@@ -104,7 +125,9 @@ def codefind(contentin):
       except KeyError:
         scripts[ps[0]]=prearray
         scripts[ps[0]].extend([var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id}) ,include_script(lang,ps[3],ps[2],partsc_id),ps[3]])
-  #/////// Runs scripts
+  #//////////////////////////////////////////////////////////////////////////////
+  #............................Runs the Scripts...........
+  #//////////////////////////////////////////////////////////////////////////////
   for scr_run in scripts.itervalues():
     scr_final=''
     i=1

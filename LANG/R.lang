@@ -9,11 +9,6 @@ output <- function(content){
 }!!!
 !!!func.preamble={
 }!!!
-!!!func.imagedisp={
-imagedisp <-function(input){
-  text=c("\\includegraphics[width=3in]{",input,"}")
-  return(paste(text,collapse=""))}
-}!!!
 !!!func.scrinc={
 scrinc <-function(options){
   if(options==""){

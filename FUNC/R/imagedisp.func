@@ -1,0 +1,3 @@
+imagedisp <-function(input){
+  text=c("\\includegraphics[width=3in]{",input,"}")
+  return(paste(text,collapse=""))}

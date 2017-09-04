@@ -12,10 +12,6 @@ def output(content):
 !!!func.preamble={
 from __future__ import division
 }!!!
-!!!func.imagedisp={
-def imagedisp(input):
-  return("\includegraphics[width=3in]{"+input+"}")
-}!!!
 !!!func.scrinc={
 def scrinc(*options):
    if len(options)==0:

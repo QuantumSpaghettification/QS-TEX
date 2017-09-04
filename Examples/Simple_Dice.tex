@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,twocolum]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage[a4paper, margin=0.5in]{geometry}
 \usepackage{color}
 \usepackage{listings}
@@ -18,6 +18,6 @@ output(substr(string,2,nchar(string)))
 </script>\]
 These have a mean of <script=R:action={!!sid=1!!}>output(mean(data))</script> and a standard deviation of <script=R:action={!!sid=1!!}>output(sd(data))</script>. This gives us a boxplot of the form:
 \begin{center}
-<script=R:action={!!sid=1!!}>boxplot(data, xlab="", ylab="Value", main="Dice Rolls", col="red");output('\\includegraphics[width=3in,page=1]{Rplots.pdf}')</script> \end{center}
+<script=R:action={!!sid=1!!}>boxplot(data, xlab="", ylab="Value", main="Dice Rolls", col="red");output(imagedisp('Rplots.pdf'))</script> \end{center}
 
 \end{document}
