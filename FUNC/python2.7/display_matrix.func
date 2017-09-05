@@ -1,0 +1,18 @@
+#Takes input of sympy matrix and outputs pmatrix in LaTeX.
+def display_matrix(matrix):
+  a=matrix
+  i=0
+  matsri='\\begin{pmatrix}'
+  while i < len(a[0,:]):
+    j=0
+    while j < len(a[:,0]):
+      matsri=matsri+str(a[i,j])
+      if j !=len(a[:,0])-1:
+        matsri=matsri+'&'
+      j=j+1
+    if i !=  len(a[0,:])-1:
+      matsri=matsri+'\\\\'
+    i=i+1
+  matsri=matsri+'\end{pmatrix}'
+  return(matsri)
+    
