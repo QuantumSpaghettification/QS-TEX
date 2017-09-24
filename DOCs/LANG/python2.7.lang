@@ -1,6 +1,6 @@
 !!!file_ext={py}!!!
 !!!lstlisting={python}!!!
-!!!back_slash_escape={}!!!
+!!!back_slash_escape={"}!!!
 
 !!!run_command={python2.7}!!!
 !!!func.output={
@@ -11,6 +11,10 @@ def output(content):
 }!!!
 !!!func.preamble={
 from __future__ import division
+}!!!
+!!!func.imagedisp={
+def imagedisp(input):
+  return("\includegraphics[width=3in]{"+input+"}")
 }!!!
 !!!func.scrinc={
 def scrinc(*options):

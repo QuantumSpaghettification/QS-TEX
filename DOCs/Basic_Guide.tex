@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt,twocolum]{article}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage{color}
+\usepackage{listings}
+\title{QS-TEX: Basic guide}
+\begin{document}
+\maketitle
+\section{Syntax}
+The basic syntax is:
+\begin{lstlisting}
+<!script=lang:action={}>
+....code...
+output(TeX_String_To_Print)
+</!script>
+\end{lstlisting}
+which can be placed anywhere in you LaTeX document (with **!script** replaced with **script**). The output() is outputted at the same place the code lies in your document.  For example:
+
+<script=python2.7:action={}>
+text='Hello World'
+output(scrinc('HF')+"output: "+text)
+</script>
+
+Here the \lstinline{scrinc('HF')} is a command to inculde the script along with the header and footer (\lstinline{<script...>} ... \lstinline{</script>}). The currently allowed languages are
+\\
+\begin{center}
+\begin{tabular}{|p{1in}|p{1in}|}
+\hline
+\textbf{Lanugage} & \textbf{lang} \\ \hline
+python 2.7 & python2.7\\ \hline
+R&R\\ \hline
+\end{tabular}
+\end{center}
+\section{Script Continuation}
+Sometimes you may want a script in one part of your document to continue in another. To do this you can use the action \lstinline{!!sid=some_id!!} e.g.
+
+<script=python2.7:action={!!sid=1!!}>
+a=1
+output(scrinc('HF'))
+</script>
+
+<script=python2.7:action={!!sid=2!!}>
+a=2
+output(scrinc('HF'))
+</script>
+
+<script=python2.7:action={!!sid=1!!}>
+output(scrinc('HF')+"output: "+str(a))
+</script>
+
+<script=python2.7:action={!!sid=2!!}>
+output(scrinc('HF')+"output: "+str(a))
+</script>
+\end{document}
