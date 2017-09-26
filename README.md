@@ -1,5 +1,9 @@
 # QS-TEX
 Combining LaTeX and Script - aimed at scientists.
+# Languages Supported
+-plain text
+-python2.7
+-R
 # Contribution 
 Any contribution is welcome (of course as long as you are making inprovments). Contact "quantumspaghettification 'at' gmail.com" if you have any problems relating to contributing or contributions. 
 # Instruction Videos
