@@ -35,8 +35,20 @@ for x in LangFiles:
     Lang_Info[key][y[0]]=y[1]
 
 def codefind(contentin):
-  par=re.findall(r'<script=(.*?):action={(.*?)}>(.*?)</script>',contentin,re.DOTALL)
-  newcontents=contentin
+  #//////////////////////////////////////////////////////////////////////////////
+  #.....Finds Scripts pre defined.......
+  #//////////////////////////////////////////////////////////////////////////////
+  par=re.findall(r'!!!(.*?)={(.*?)}!!!',contentin,re.DOTALL)
+  precontents=contentin
+  for x in par:
+    precontents=precontents.replace('!!!'+x[0]+'={'+x[1]+'}!!!','')
+    precontents=precontents.replace('<'+x[0]+'>',x[1])
+    precontents=precontents.replace('</'+x[0]+'>','</script>')
+  #//////////////////////////////////////////////////////////////////////////////
+  #.....Finds Scripts .......
+  #//////////////////////////////////////////////////////////////////////////////  
+  par=re.findall(r'<script=(.*?):action={(.*?)}>(.*?)</script>',precontents,re.DOTALL)
+  newcontents=precontents
   #script needs to be the end point of the file.
   langarray=[key for key in Lang_Info]
   #//////////////////////////////////////////////////////////////////////////////
