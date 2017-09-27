@@ -4,11 +4,11 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \lstdefinestyle{mystyle2}{
+      \lstdefinestyle{mystyle7}{
       backgroundcolor=\color{codegray},   
       commentstyle=\color{magenta},
       keywordstyle=\color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -23,8 +23,9 @@
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-\begin{lstlisting}[language=,style=mystyle2]
-!!!<name-of-varible>={<Quantity>}!!!
-\end{lstlisting}
+\begin{lstlisting}[language=R,style=mystyle7]
+<script=R:action={!!sid=R1!!}>
+test="Hello World! From R"
+output(scrinc("HF"))
+</script>\end{lstlisting}
           

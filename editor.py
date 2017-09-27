@@ -75,9 +75,14 @@ def codefind(contentin):
       latexcode=Config_Info['ListingPre']+"""
       !bs!lstdefinestyle{mystyle"""+str(indscriptid)+"""}{"""+Config_Info['ListingIn']+"""
       }
-      %.................................................
 !bs!begin{lstlisting}[language="""+Lang_Info[lang]["lstlisting"]+""",style=mystyle"""+str(indscriptid)+"""]"""+pre+script_escaped+post+"""!bs!end{lstlisting}
           """+Config_Info['ListingPost']
+      try:
+          par=re.findall(r'!!(.*?)\|(.*?)!!',Lang_Info[lang]['listing_replace'],re.DOTALL)
+          for x_lr in par:
+            latexcode=latexcode.replace(x_lr[0],x_lr[1])
+      except KeyError:
+        pass
       return(latexcode)
     if len(other)==0:
       return(var_rep(Lang_Info[lang]['func.scrinc'],{"norm":latexcode_func(''),"HF":latexcode_func('HF')}))
@@ -141,9 +146,9 @@ def codefind(contentin):
     prearray=[lang,Lang_Info[lang]["func.preamble"],pre_functions(lang)]
     #defines function to add
     toadd=[]
-    if len(re.findall('output\((.*?)\)', ps[3],re.DOTALL))!=0:
+    if len(re.findall('\noutput', ps[3],re.DOTALL))!=0:
        toadd=toadd+[var_rep(Lang_Info[lang]['func.output'],{"i":partsc_id})]
-    if len(re.findall('scrinc\((.*?)\)', ps[3],re.DOTALL))!=0:
+    if len(re.findall('scrinc', ps[3],re.DOTALL))!=0:
        toadd=toadd+[include_script(lang,ps[3],ps[2],partsc_id)]
     toadd=toadd+[ps[3].replace('from __future__ import division','')]
     #end of defining function to add
@@ -168,7 +173,7 @@ def codefind(contentin):
     file=open("tempcode."+Lang_Info[scr_run[0]]['file_ext'],"w")
     file.write(scr_final)
     file.close()
-    os.system(Lang_Info[scr_run[0]]['run_command']+' '+'tempcode.'+Lang_Info[scr_run[0]]['file_ext'])
+    os.system(Lang_Info[scr_run[0]]['run_command'].replace('!!i!!','tempcode.'+Lang_Info[scr_run[0]]['file_ext']))
   #//////////////////////////////////////////////////////////////////////////////
   #.............Finds and Replaces <script...>... </script> with output..........
   #//////////////////////////////////////////////////////////////////////////////

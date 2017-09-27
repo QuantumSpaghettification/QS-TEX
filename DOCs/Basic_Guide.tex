@@ -2,52 +2,102 @@
 \usepackage[a4paper, margin=0.5in]{geometry}
 \usepackage{color}
 \usepackage{listings}
+\usepackage{hyperref}
 \title{QS-TEX: Basic guide}
 \begin{document}
 \maketitle
-\section{Syntax}
-The basic syntax is:
-\begin{lstlisting}
-<!script=lang:action={}>
-....code...
-output(TeX_String_To_Print)
-</!script>
-\end{lstlisting}
-which can be placed anywhere in you LaTeX document (with **!script** replaced with **script**). The output() is outputted at the same place the code lies in your document.  For example:
-
-<script=python2.7:action={}>
-text='Hello World'
-output(scrinc('HF')+"output: "+text)
+\section{What QS-TEX does?}
+QS-TEX is a program designed to allow the implication of code within a \LaTeX  script and thus allowing scripts and documents to be kept together. 
+\section{Getting Started}
+To get started you need to download the following documents from:
+\begin{center} \url{https://github.com/QuantumSpaghettification/QS-TEX} \end{center}
+Into a directory named e.g. QS-TEX:
+\begin{itemize}
+\item FUNC directory
+\item LANG directory
+\item editor.py
+\end{itemize}
+Into the directory of your \LaTeX  document:
+\begin{itemize}
+\item QS.config
+\end{itemize}
+into this you must change the path to the path of your QS-TEX directory and have the option to change the sytle of listings (use `!bs!' for back slashes in this file).\\
+The basic syntax for including script into your \LaTeX  program is:
+<script=plain:action={!!output=scrinc()!!}>
+<(!)script=lang:action={}>
+your script here
+</(!)script>
 </script>
-
-Here the \lstinline{scrinc('HF')} is a command to inculde the script along with the header and footer (\lstinline{<script...>} ... \lstinline{</script>}). The currently allowed languages are
-\\
-\begin{center}
-\begin{tabular}{|p{1in}|p{1in}|}
+without the `(!)' and lang replaced by the language of your choice (see below). To compile your program you need to run (on Linux Mint\footnote{Other OS's may vary.}):
+<script=plain:action={!!output=scrinc()!!}>
+python2.7 <path-to-QS-TEX>/editor.py <file-Name>.tex
+</script>
+This will create a number of files inluding temp.tex which you should run your standard \LaTeX compiling program on.
+\section{Languages}
+\subsection{Languages Supported}
+So far the following languages are supported.\\
+\begin{tabular}{|p{1.5in}|p{1.5in}|}
+\hline 
+\textbf{Language} & \textbf{lang}\\
 \hline
-\textbf{Lanugage} & \textbf{lang} \\ \hline
-python 2.7 & python2.7\\ \hline
-R&R\\ \hline
+Plain Text & plain\\ \hline
+Python v2.7 & python2.7\\ \hline
+R & R\\ \hline
 \end{tabular}
-\end{center}
-\section{Script Continuation}
-Sometimes you may want a script in one part of your document to continue in another. To do this you can use the action \lstinline{!!sid=some_id!!} e.g.
-
-<script=python2.7:action={!!sid=1!!}>
+\\
+at the moment the number of langauges are limited but making new ones are easy...
+\section{Adding a New Language}
+To create a new language you need to:
+\begin{itemize}
+\item add a `<name-of-language>.lang' file to the LANG directory.
+\item add a `<name-of-language>' subdirectory o the FUNC directory.
+\end{itemize}
+The `.lang' file must take the form:
+<script=plain:action={!!output=scrinc()!!}>
+!!!<name-of-varible>={<Quantity>}!!!
+</script>
+and must include the following varibles:
+\begin{itemize}
+\item file\textunderscore ext: The file extention of your language.
+\item lstlisting: What listing sytle you want to use (this can be left empty).
+\item back\textunderscore slash\textunderscore escape: Things that need to be escaped in listings.
+\item run\textunderscore command: The command line command to run your script language.
+\item func\textunderscore output: A function named `output' written in the language under consideration which outputs a string to a file called 'outputfc\textunderscore !!i!!.txt` (the !!i!! is replaced by the editor.py script).
+\item func.preamble: What needs to be placed at the begining of each script in this language.
+\item func.scrinc: A function which outputs a string `!!norm!!' or `!!HF!!' depending on arugment and replaced `!bs!' in this string with backslashes.
+\end{itemize}
+\section{Actions}
+Actions are included in the main header e.g.:
+<script=plain:action={!!output=scrinc()!!}>
+<(!)script=python2.7:action={!!<name-of-action1>!!!!<name-of-action2>!!}>
+script
+</(!)script>
+</script>
+again without the (!)'s included. Currently the actions avaible are:
+\begin{itemize}
+\item sid=...: scripts with the same sid (script id) are run together and sequentially, e.g. if you define a varible in one you can use it in the other etc.
+\item LinNoId=...: scripts with teh same LinNoId (line number id) have their linenumbers carried on sequentially in listings.
+\item output=...: Normally every script must have an output() in it (this can be left empty). The exception is when you give an output action in which case the string `...' is given as the output. This can include the scrinc() function which outputs the script.
+\end{itemize}
+\section{Examples}
+As well as this whole document been created with the QS-TEX program; here are some basic examples of working scripts (mainly in python2.7 - sorry):
+<script=python2.7:action={}>
 a=1
+output(scrinc('HF')+' Output:'+str(a))
+</script>
+\\
+<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
+def adder(a):
+  return(a+1)
 output(scrinc('HF'))
 </script>
-
-<script=python2.7:action={!!sid=2!!}>
-a=2
-output(scrinc('HF'))
+The above function will be usuable wih any script with the same sid e.g.
+<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
+output(scrinc('HF')+' Output:'+str(adder(10)))
+</script>
+\\
+<script=python2.7:action={!!output=scrinc('HF')!!}>
+x=1
 </script>
 
-<script=python2.7:action={!!sid=1!!}>
-output(scrinc('HF')+"output: "+str(a))
-</script>
-
-<script=python2.7:action={!!sid=2!!}>
-output(scrinc('HF')+"output: "+str(a))
-</script>
 \end{document}

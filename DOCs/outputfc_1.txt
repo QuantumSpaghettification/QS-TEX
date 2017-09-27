@@ -1,13 +1,14 @@
 
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
       \lstdefinestyle{mystyle1}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -23,9 +24,7 @@
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=python,style=mystyle1]
-<script=python2.7:action={!!sid=1!!}>
-a=1
-output(scrinc('HF'))
-</script>\end{lstlisting}
+\begin{lstlisting}[language=,style=mystyle1]
+python2.7 <path-to-QS-TEX>/editor.py <file-Name>.tex
+\end{lstlisting}
           

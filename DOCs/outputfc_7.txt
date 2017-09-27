@@ -4,7 +4,7 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \lstdefinestyle{mystyle2}{
+      \lstdefinestyle{mystyle7}{
       backgroundcolor=\color{codegray},   
       commentstyle=\color{magenta},
       keywordstyle=\color{blue},
@@ -24,7 +24,8 @@
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=,style=mystyle2]
-!!!<name-of-varible>={<Quantity>}!!!
-\end{lstlisting}
+\begin{lstlisting}[language=python,style=mystyle7]
+<script=python2.7:action={!!output=scrinc('HF')!!}>
+x=1
+</script>\end{lstlisting}
           

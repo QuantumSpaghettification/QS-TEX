@@ -2,7 +2,7 @@
 !!!lstlisting={python}!!!
 !!!back_slash_escape={}!!!
 
-!!!run_command={python2.7}!!!
+!!!run_command={python2.7 !!i!!}!!!
 !!!func.output={
 def output(content):
   file=open("outputfc_!!i!!.txt","w")

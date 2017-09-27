@@ -1,48 +1,29 @@
 
 
-from __future__ import division
 
-def imagedisp(input):
-  return("\includegraphics[width=3in]{"+input+"}")
-#Takes input of sympy matrix and outputs pmatrix in LaTeX.
-def display_matrix(matrix):
-  a=matrix
-  i=0
-  matsri='\\begin{pmatrix}'
-  while i < len(a[0,:]):
-    j=0
-    while j < len(a[:,0]):
-      matsri=matsri+str(a[i,j])
-      if j !=len(a[:,0])-1:
-        matsri=matsri+'&'
-      j=j+1
-    if i !=  len(a[0,:])-1:
-      matsri=matsri+'\\\\'
-    i=i+1
-  matsri=matsri+'\end{pmatrix}'
-  return(matsri)
-    
+imagedisp <-function(input){
+  text=c("\\includegraphics[width=3in]{",input,"}")
+  return(paste(text,collapse=""))}
 
 
-def output(content):
-  file=open("outputfc_5.txt","w")
-  file.write(content)
-  file.close()
+output <- function(content){
+   cat(content, file = "outputfc_7.txt")
+   }
 
 
-def scrinc(*options):
-   if len(options)==0:
-      x="""
+scrinc <-function(options){
+  if(options==""){
+    x="
 !bs!definecolor{codegreen}{rgb}{0,0.6,0}
 !bs!definecolor{codegray}{rgb}{0.5,0.5,0.5}
 !bs!definecolor{codepurple}{rgb}{0.58,0,0.82}
 !bs!definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      !bs!lstdefinestyle{mystyle5}{
+      !bs!lstdefinestyle{mystyle7}{
       backgroundcolor=!bs!color{codegray},   
       commentstyle=!bs!color{magenta},
       keywordstyle=!bs!color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=!bs!tiny!bs!color{codegray},
       stringstyle=!bs!color{codepurple},
       basicstyle=!bs!footnotesize,
@@ -57,25 +38,24 @@ def scrinc(*options):
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-!bs!begin{lstlisting}[language=python,style=mystyle5]
-def adder(a):
-  return(a+1)
-output(scrinc('HF'))
+!bs!begin{lstlisting}[language=R,style=mystyle7]
+test=\"Hello World! From R\"
+output(scrinc(\"HF\"))
 !bs!end{lstlisting}
-          """
-   elif "HF" in options:
-      x="""
+          "
+    }
+  else if(options=="HF"){
+    x="
 !bs!definecolor{codegreen}{rgb}{0,0.6,0}
 !bs!definecolor{codegray}{rgb}{0.5,0.5,0.5}
 !bs!definecolor{codepurple}{rgb}{0.58,0,0.82}
 !bs!definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      !bs!lstdefinestyle{mystyle5}{
+      !bs!lstdefinestyle{mystyle7}{
       backgroundcolor=!bs!color{codegray},   
       commentstyle=!bs!color{magenta},
       keywordstyle=!bs!color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=!bs!tiny!bs!color{codegray},
       stringstyle=!bs!color{codepurple},
       basicstyle=!bs!footnotesize,
@@ -90,44 +70,39 @@ output(scrinc('HF'))
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-!bs!begin{lstlisting}[language=python,style=mystyle5]
-<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
-def adder(a):
-  return(a+1)
-output(scrinc('HF'))
+!bs!begin{lstlisting}[language=R,style=mystyle7]
+<script=R:action={!!sid=R1!!}>
+test=\"Hello World! From R\"
+output(scrinc(\"HF\"))
 </script>!bs!end{lstlisting}
-          """
-   findrep={'!bs!b':'\\b','!bs!n':'\\\\n','!bs!':'\\'}
-   for key in findrep:
-      x=x.replace(key,findrep[key])
-   return(x)
+          "
+    }
+   return(gsub('!bs!','\\\\',x))
+  }
 
 
-def adder(a):
-  return(a+1)
-output(scrinc('HF'))
+test="Hello World! From R"
+output(scrinc("HF"))
 
 
-def output(content):
-  file=open("outputfc_6.txt","w")
-  file.write(content)
-  file.close()
+output <- function(content){
+   cat(content, file = "outputfc_8.txt")
+   }
 
 
-def scrinc(*options):
-   if len(options)==0:
-      x="""
+scrinc <-function(options){
+  if(options==""){
+    x="
 !bs!definecolor{codegreen}{rgb}{0,0.6,0}
 !bs!definecolor{codegray}{rgb}{0.5,0.5,0.5}
 !bs!definecolor{codepurple}{rgb}{0.58,0,0.82}
 !bs!definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      !bs!lstdefinestyle{mystyle6}{
+      !bs!lstdefinestyle{mystyle8}{
       backgroundcolor=!bs!color{codegray},   
       commentstyle=!bs!color{magenta},
       keywordstyle=!bs!color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=!bs!tiny!bs!color{codegray},
       stringstyle=!bs!color{codepurple},
       basicstyle=!bs!footnotesize,
@@ -142,23 +117,23 @@ def scrinc(*options):
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-!bs!begin{lstlisting}[language=python,style=mystyle6]
-output(scrinc('HF')+' Output:'+str(adder(10)))
+!bs!begin{lstlisting}[language=R,style=mystyle8]
+output(paste(scrinc(\"HF\"),test,sep=''))
 !bs!end{lstlisting}
-          """
-   elif "HF" in options:
-      x="""
+          "
+    }
+  else if(options=="HF"){
+    x="
 !bs!definecolor{codegreen}{rgb}{0,0.6,0}
 !bs!definecolor{codegray}{rgb}{0.5,0.5,0.5}
 !bs!definecolor{codepurple}{rgb}{0.58,0,0.82}
 !bs!definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      !bs!lstdefinestyle{mystyle6}{
+      !bs!lstdefinestyle{mystyle8}{
       backgroundcolor=!bs!color{codegray},   
       commentstyle=!bs!color{magenta},
       keywordstyle=!bs!color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=!bs!tiny!bs!color{codegray},
       stringstyle=!bs!color{codepurple},
       basicstyle=!bs!footnotesize,
@@ -173,16 +148,14 @@ output(scrinc('HF')+' Output:'+str(adder(10)))
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-!bs!begin{lstlisting}[language=python,style=mystyle6]
-<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
-output(scrinc('HF')+' Output:'+str(adder(10)))
+!bs!begin{lstlisting}[language=R,style=mystyle8]
+<script=R:action={!!sid=R1!!}>
+output(paste(scrinc(\"HF\"),test,sep=''))
 </script>!bs!end{lstlisting}
-          """
-   findrep={'!bs!b':'\\b','!bs!n':'\\\\n','!bs!':'\\'}
-   for key in findrep:
-      x=x.replace(key,findrep[key])
-   return(x)
+          "
+    }
+   return(gsub('!bs!','\\\\',x))
+  }
 
 
-output(scrinc('HF')+' Output:'+str(adder(10)))
+output(paste(scrinc("HF"),test,sep=''))

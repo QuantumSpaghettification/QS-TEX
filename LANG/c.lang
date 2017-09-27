@@ -1,0 +1,24 @@
+!!!file_ext={c}!!!
+!!!lstlisting={c}!!!
+!!!back_slash_escape={"}!!!
+!!!listing_replace={!!
+|\n!!!!!bs!|\\!!}!!!
+!!!run_command={gcc -o tempcode !!i!!; ./tempcode}!!!
+!!!func.output={
+void output(char *text){
+  FILE *file;
+  file=fopen("outputfc_!!i!!.txt","w");
+  fprintf(file, "%s", text);
+}
+}!!!
+!!!func.preamble={#include <stdio.h>}!!!
+!!!func.scrinc={
+char* scrinc(char* arg){
+  char* temp;
+  if( arg == "HF" ){
+    temp = "!!HF!!";}
+  else {
+    temp = "!!norm!!";}
+  return temp;
+}
+}!!!

@@ -1,0 +1,499 @@
+\documentclass[a4paper,12pt,twocolum]{article}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage{color}
+\usepackage{listings}
+\title{Test file}
+\begin{document}
+\maketitle
+\twocolumn
+\section{Abstract}
+This file contains test for QS-TEX. It may also be useful as a reference of examples.
+\section{python2.7}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle0}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=python,style=mystyle0]
+<script=python2.7:action={}>
+test="Hello World! From python2.7"
+output(scrinc("HF")+test)
+</script>\end{lstlisting}
+          Hello World! From python2.7
+\subsection{Script Continutation}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle1}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=python,style=mystyle1]
+<script=python2.7:action={!!sid=py1!!}>
+test="Hello World! From python2.7"
+output(scrinc("HF"))
+</script>\end{lstlisting}
+          
+Normal text.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle2}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=python,style=mystyle2]
+<script=python2.7:action={!!sid=py1!!}>
+output(scrinc("HF")+test)
+</script>\end{lstlisting}
+          Hello World! From python2.7
+\section{bash}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle3}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=bash,style=mystyle3]
+<script=bash:action={}>
+test="Hello World! From bash"
+output "$( scrinc "HF" )"$test
+</script>\end{lstlisting}
+          Hello World! From bash
+\subsection{Script Continutation}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle4}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=bash,style=mystyle4]
+<script=bash:action={!!sid=ba1!!}>
+test="Hello World! From bash"
+output "$( scrinc "HF" )"
+</script>\end{lstlisting}
+          
+Normal text.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle5}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=bash,style=mystyle5]
+<script=bash:action={!!sid=ba1!!}>
+output "$( scrinc "HF" )"$test
+</script>\end{lstlisting}
+          Hello World! From bash
+\section{R}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle6}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=R,style=mystyle6]
+<script=R:action={}>
+test="Hello World! From R"
+output(paste(scrinc("HF"),test,sep=''))
+</script>\end{lstlisting}
+          Hello World! From R
+\subsection{Script Continutation}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle7}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=R,style=mystyle7]
+<script=R:action={!!sid=R1!!}>
+test="Hello World! From R"
+output(scrinc("HF"))
+</script>\end{lstlisting}
+          
+Normal text.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle8}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=R,style=mystyle8]
+<script=R:action={!!sid=R1!!}>
+output(paste(scrinc("HF"),test,sep=''))
+</script>\end{lstlisting}
+          Hello World! From R
+\section{c}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle9}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=c,style=mystyle9]
+<script=c:action={}>
+#include <stdlib.h>
+#include <string.h>
+void main(){
+char* test = "Hello World! From c";
+char* temp = malloc(strlen(scrinc("HF"))+strlen(test));
+strcpy(temp,scrinc("HF"));
+strcat(temp,test);
+output( temp );
+}
+</script>\end{lstlisting}
+          Hello World! From c
+\subsection{Script Continutation}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle10}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=c,style=mystyle10]
+<script=c:action={!!sid=c1!!}>
+#include <stdlib.h>
+#include <string.h>
+void main(){
+char* test = "Hello World! From c";
+output( scrinc("HF") );
+</script>\end{lstlisting}
+          
+Normal text.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle11}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=c,style=mystyle11]
+<script=c:action={!!sid=c1!!}>
+char* temp = malloc(strlen(scrinc("HF"))+strlen(test));
+strcpy(temp,scrinc("HF"));
+strcat(temp,test);
+output( temp );
+}
+</script>\end{lstlisting}
+          Hello World! From c
+\section{Miscellaneous}
+\subsection{Pre-defining Scripts}
+Writing
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle12}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=,style=mystyle12]
+!!(!)!s={<(!)script=python2.7:action={!!sid=PDS!!}>}!!!
+\end{lstlisting}
+          
+(with (!) removed) Using \lstinline{<s(!)>...</s(!)>} instead of the above:
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle13}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=python,style=mystyle13]
+test="Hello world! From python2.7"
+output(scrinc())
+\end{lstlisting}
+          
+Normal text.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle14}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=3.5in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+\begin{lstlisting}[language=python,style=mystyle14]
+output(scrinc()+test)
+\end{lstlisting}
+          Hello world! From python2.7
+\end{document}

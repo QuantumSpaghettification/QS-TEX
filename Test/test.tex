@@ -1,0 +1,97 @@
+\documentclass[a4paper,12pt,twocolum]{article}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage{color}
+\usepackage{listings}
+\title{Test file}
+\begin{document}
+\maketitle
+\twocolumn
+\section{Abstract}
+This file contains test for QS-TEX. It may also be useful as a reference of examples.
+\section{python2.7}
+<script=python2.7:action={}>
+test="Hello World! From python2.7"
+output(scrinc("HF")+test)
+</script>
+\subsection{Script Continutation}
+<script=python2.7:action={!!sid=py1!!}>
+test="Hello World! From python2.7"
+output(scrinc("HF"))
+</script>
+Normal text.
+<script=python2.7:action={!!sid=py1!!}>
+output(scrinc("HF")+test)
+</script>
+\section{bash}
+<script=bash:action={}>
+test="Hello World! From bash"
+output "$( scrinc "HF" )"$test
+</script>
+\subsection{Script Continutation}
+<script=bash:action={!!sid=ba1!!}>
+test="Hello World! From bash"
+output "$( scrinc "HF" )"
+</script>
+Normal text.
+<script=bash:action={!!sid=ba1!!}>
+output "$( scrinc "HF" )"$test
+</script>
+\section{R}
+<script=R:action={}>
+test="Hello World! From R"
+output(paste(scrinc("HF"),test,sep=''))
+</script>
+\subsection{Script Continutation}
+<script=R:action={!!sid=R1!!}>
+test="Hello World! From R"
+output(scrinc("HF"))
+</script>
+Normal text.
+<script=R:action={!!sid=R1!!}>
+output(paste(scrinc("HF"),test,sep=''))
+</script>
+\section{c}
+<script=c:action={}>
+#include <stdlib.h>
+#include <string.h>
+void main(){
+char* test = "Hello World! From c";
+char* temp = malloc(strlen(scrinc("HF"))+strlen(test));
+strcpy(temp,scrinc("HF"));
+strcat(temp,test);
+output( temp );
+}
+</script>
+\subsection{Script Continutation}
+<script=c:action={!!sid=c1!!}>
+#include <stdlib.h>
+#include <string.h>
+void main(){
+char* test = "Hello World! From c";
+output( scrinc("HF") );
+</script>
+Normal text.
+<script=c:action={!!sid=c1!!}>
+char* temp = malloc(strlen(scrinc("HF"))+strlen(test));
+strcpy(temp,scrinc("HF"));
+strcat(temp,test);
+output( temp );
+}
+</script>
+\section{Miscellaneous}
+\subsection{Pre-defining Scripts}
+Writing
+!!!s={<script=python2.7:action={!!sid=PDS!!}>}!!!
+<script=plain:action={!!output=scrinc()!!}>
+!!(!)!s={<(!)script=python2.7:action={!!sid=PDS!!}>}!!!
+</script>
+(with (!) removed) Using \lstinline{<s(!)>...</s(!)>} instead of the above:
+<s>
+test="Hello world! From python2.7"
+output(scrinc())
+</s>
+Normal text.
+<s>
+output(scrinc()+test)
+</s>
+\end{document}

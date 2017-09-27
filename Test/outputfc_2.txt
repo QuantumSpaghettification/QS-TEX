@@ -8,7 +8,7 @@
       backgroundcolor=\color{codegray},   
       commentstyle=\color{magenta},
       keywordstyle=\color{blue},
-      linewidth=6in,
+      linewidth=3.5in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -23,8 +23,8 @@
       showtabs=false,                  
       tabsize=2
       }
-      %.................................................
-\begin{lstlisting}[language=,style=mystyle2]
-!!!<name-of-varible>={<Quantity>}!!!
-\end{lstlisting}
-          
+\begin{lstlisting}[language=python,style=mystyle2]
+<script=python2.7:action={!!sid=py1!!}>
+output(scrinc("HF")+test)
+</script>\end{lstlisting}
+          Hello World! From python2.7

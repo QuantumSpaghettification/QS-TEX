@@ -1,7 +1,7 @@
 !!!file_ext={R}!!!
 !!!lstlisting={R}!!!
 !!!back_slash_escape={"}!!!
-!!!run_command={Rscript}!!!
+!!!run_command={Rscript !!i!!}!!!
 !!!func.output={
 output <- function(content){
    cat(content, file = "outputfc_!!i!!.txt")

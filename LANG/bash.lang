@@ -1,0 +1,36 @@
+!!!file_ext={sh}!!!
+!!!lstlisting={bash}!!!
+!!!back_slash_escape={}!!!
+!!!listing_replace={!!
+|newline!!}!!!
+!!!run_command={bash !!i!!}!!!
+!!!func.output={
+output() { 
+temp=$@
+temp=${temp//!bsp!b/\\\\b}
+temp=${temp//!bsp!e/\\\\e}
+temp=${temp//!bsp!f/\\\\f}
+temp=${temp//!bsp!t/\\\\t}
+
+printf "$temp" > outputfc_!!i!!.txt
+}
+}!!!
+!!!func.preamble={
+#!/bin/bash
+}!!!
+!!!func.scrinc={
+scrinc(){
+input=$@
+temp='!!norm!!'
+if [[ "$input" == "HF" ]]; then
+temp='!!HF!!'
+fi
+temp=${temp//!bs!b/!bsp!b}
+temp=${temp//!bs!e/!bsp!e}
+temp=${temp//!bs!f/!bsp!f}
+temp=${temp//!bs!t/!bsp!t}
+temp=${temp//!bs!/\\}
+temp=${temp//newline/\\n}
+printf "$temp"
+}
+}!!!

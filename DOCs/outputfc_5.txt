@@ -4,7 +4,7 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \lstdefinestyle{mystyle2}{
+      \lstdefinestyle{mystyle5}{
       backgroundcolor=\color{codegray},   
       commentstyle=\color{magenta},
       keywordstyle=\color{blue},
@@ -24,7 +24,10 @@
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=,style=mystyle2]
-!!!<name-of-varible>={<Quantity>}!!!
-\end{lstlisting}
+\begin{lstlisting}[language=python,style=mystyle5]
+<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
+def adder(a):
+  return(a+1)
+output(scrinc('HF'))
+</script>\end{lstlisting}
           

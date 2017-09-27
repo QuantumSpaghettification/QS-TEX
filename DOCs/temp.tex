@@ -2,29 +2,38 @@
 \usepackage[a4paper, margin=0.5in]{geometry}
 \usepackage{color}
 \usepackage{listings}
+\usepackage{hyperref}
 \title{QS-TEX: Basic guide}
 \begin{document}
 \maketitle
-\section{Syntax}
-The basic syntax is:
-\begin{lstlisting}
-<!script=lang:action={}>
-....code...
-output(TeX_String_To_Print)
-</!script>
-\end{lstlisting}
-which can be placed anywhere in you LaTeX document (with **!script** replaced with **script**). The output() is outputted at the same place the code lies in your document.  For example:
+\section{What QS-TEX does?}
+QS-TEX is a program designed to allow the implication of code within a \LaTeX  script and thus allowing scripts and documents to be kept together. 
+\section{Getting Started}
+To get started you need to download the following documents from:
+\begin{center} \url{https://github.com/QuantumSpaghettification/QS-TEX} \end{center}
+Into a directory named e.g. QS-TEX:
+\begin{itemize}
+\item FUNC directory
+\item LANG directory
+\item editor.py
+\end{itemize}
+Into the directory of your \LaTeX  document:
+\begin{itemize}
+\item QS.config
+\end{itemize}
+into this you must change the path to the path of your QS-TEX directory and have the option to change the sytle of listings (use `!bs!' for back slashes in this file).\\
+The basic syntax for including script into your \LaTeX  program is:
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
       \lstdefinestyle{mystyle0}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -40,36 +49,24 @@ which can be placed anywhere in you LaTeX document (with **!script** replaced wi
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=python,style=mystyle0]
-<script=python2.7:action={}>
-text='Hello World'
-output(scrinc('HF')+"output: "+text)
-</script>\end{lstlisting}
-          output: Hello World
+\begin{lstlisting}[language=,style=mystyle0]
+<(!)script=lang:action={}>
+your script here
+</(!)script>
+\end{lstlisting}
+          
+without the `(!)' and lang replaced by the language of your choice (see below). To compile your program you need to run (on Linux Mint\footnote{Other OS's may vary.}):
 
-Here the \lstinline{scrinc('HF')} is a command to inculde the script along with the header and footer (\lstinline{<script...>} ... \lstinline{</script>}). The currently allowed languages are
-\\
-\begin{center}
-\begin{tabular}{|p{1in}|p{1in}|}
-\hline
-Lanugage & lang \\ \hline
-python 2.7 & python2.7\\ \hline
-R&R\\ \hline
-\end{tabular}
-\end{center}
-\section{Script Continued}
-Sometimes you may want a script in one part of your document to continue in another. To do this you can use the action \lstinline{!!sid=some_id!!} e.g.
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
       \lstdefinestyle{mystyle1}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -85,23 +82,42 @@ Sometimes you may want a script in one part of your document to continue in anot
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=python,style=mystyle1]
-<script=python2.7:action={!!sid=1!!}>
-a=1
-output(scrinc('HF'))
-</script>\end{lstlisting}
+\begin{lstlisting}[language=,style=mystyle1]
+python2.7 <path-to-QS-TEX>/editor.py <file-Name>.tex
+\end{lstlisting}
           
+This will create a number of files inluding temp.tex which you should run your standard \LaTeX compiling program on.
+\section{Languages}
+\subsection{Languages Supported}
+So far the following languages are supported.\\
+\begin{tabular}{|p{1.5in}|p{1.5in}|}
+\hline 
+\textbf{Language} & \textbf{lang}\\
+\hline
+Plain Text & plain\\ \hline
+Python v2.7 & python2.7\\ \hline
+R & R\\ \hline
+\end{tabular}
+\\
+at the moment the number of langauges are limited but making new ones are easy...
+\section{Adding a New Language}
+To create a new language you need to:
+\begin{itemize}
+\item add a `<name-of-language>.lang' file to the LANG directory.
+\item add a `<name-of-language>' subdirectory o the FUNC directory.
+\end{itemize}
+The `.lang' file must take the form:
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
       \lstdefinestyle{mystyle2}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -117,23 +133,33 @@ output(scrinc('HF'))
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=python,style=mystyle2]
-<script=python2.7:action={!!sid=2!!}>
-a=2
-output(scrinc('HF'))
-</script>\end{lstlisting}
+\begin{lstlisting}[language=,style=mystyle2]
+!!!<name-of-varible>={<Quantity>}!!!
+\end{lstlisting}
           
+and must include the following varibles:
+\begin{itemize}
+\item file\textunderscore ext: The file extention of your language.
+\item lstlisting: What listing sytle you want to use (this can be left empty).
+\item back\textunderscore slash\textunderscore escape: Things that need to be escaped in listings.
+\item run\textunderscore command: The command line command to run your script language.
+\item func\textunderscore output: A function named `output' written in the language under consideration which outputs a string to a file called 'outputfc\textunderscore !!i!!.txt` (the !!i!! is replaced by the editor.py script).
+\item func.preamble: What needs to be placed at the begining of each script in this language.
+\item func.scrinc: A function which outputs a string `!!norm!!' or `!!HF!!' depending on arugment and replaced `!bs!' in this string with backslashes.
+\end{itemize}
+\section{Actions}
+Actions are included in the main header e.g.:
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
       \lstdefinestyle{mystyle3}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -149,22 +175,31 @@ output(scrinc('HF'))
       tabsize=2
       }
       %.................................................
-\begin{lstlisting}[language=python,style=mystyle3]
-<script=python2.7:action={!!sid=1!!}>
-output(scrinc('HF')+"output: "+str(a))
-</script>\end{lstlisting}
-          output: 1
+\begin{lstlisting}[language=,style=mystyle3]
+<(!)script=python2.7:action={!!<name-of-action1>!!!!<name-of-action2>!!}>
+script
+</(!)script>
+\end{lstlisting}
+          
+again without the (!)'s included. Currently the actions avaible are:
+\begin{itemize}
+\item sid=...: scripts with the same sid (script id) are run together and sequentially, e.g. if you define a varible in one you can use it in the other etc.
+\item LinNoId=...: scripts with teh same LinNoId (line number id) have their linenumbers carried on sequentially in listings.
+\item output=...: Normally every script must have an output() in it (this can be left empty). The exception is when you give an output action in which case the string `...' is given as the output. This can include the scrinc() function which outputs the script.
+\end{itemize}
+\section{Examples}
+As well as this whole document been created with the QS-TEX program; here are some basic examples of working scripts (mainly in python2.7 - sorry):
 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-      \definecolor{codegreen}{rgb}{0,0.6,0}
-      \definecolor{codegray}{rgb}{0.5,0.5,0.5}
-      \definecolor{codepurple}{rgb}{0.58,0,0.82}
-      \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
       \lstdefinestyle{mystyle4}{
-      backgroundcolor=\color{white},   
-      commentstyle=\color{codegreen},
-      keywordstyle=\color{magenta},
-      linewidth=5in,
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
       numberstyle=\tiny\color{codegray},
       stringstyle=\color{codepurple},
       basicstyle=\footnotesize,
@@ -181,8 +216,108 @@ output(scrinc('HF')+"output: "+str(a))
       }
       %.................................................
 \begin{lstlisting}[language=python,style=mystyle4]
-<script=python2.7:action={!!sid=2!!}>
-output(scrinc('HF')+"output: "+str(a))
+<script=python2.7:action={}>
+a=1
+output(scrinc('HF')+' Output:'+str(a))
 </script>\end{lstlisting}
-          output: 2
+           Output:1
+\\
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle5}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+      %.................................................
+\begin{lstlisting}[language=python,style=mystyle5,firstnumber=1]
+<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
+def adder(a):
+  return(a+1)
+output(scrinc('HF'))
+</script>\end{lstlisting}
+          
+The above function will be usuable wih any script with the same sid e.g.
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle6}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+      %.................................................
+\begin{lstlisting}[language=python,style=mystyle6,firstnumber=4]
+<script=python2.7:action={!!sid=1!!!!LinNoId=1!!}>
+output(scrinc('HF')+' Output:'+str(adder(10)))
+</script>\end{lstlisting}
+           Output:11
+\\
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+      \lstdefinestyle{mystyle7}{
+      backgroundcolor=\color{codegray},   
+      commentstyle=\color{magenta},
+      keywordstyle=\color{blue},
+      linewidth=6in,
+      numberstyle=\tiny\color{codegray},
+      stringstyle=\color{codepurple},
+      basicstyle=\footnotesize,
+      breakatwhitespace=false,         
+      breaklines=true,                 
+      captionpos=b,                    
+      keepspaces=true,                 
+      numbers=left,                    
+      numbersep=5pt,                  
+      showspaces=false,                
+      showstringspaces=false,
+      showtabs=false,                  
+      tabsize=2
+      }
+      %.................................................
+\begin{lstlisting}[language=python,style=mystyle7]
+<script=python2.7:action={!!output=scrinc('HF')!!}>
+x=1
+</script>\end{lstlisting}
+          
+
 \end{document}
