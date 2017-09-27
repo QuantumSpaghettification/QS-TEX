@@ -2,6 +2,10 @@
 Combining LaTeX and Script - aimed at scientists.
 # Languages Supported
 
+  -bash
+  
+  -c
+ 
   -plain text
   
   -python2.7
